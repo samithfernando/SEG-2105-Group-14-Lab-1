@@ -1,7 +1,4 @@
 package com.example.mycalculator;
-import net.objecthunter.exp4j.Expression;
-import net.objecthunter.exp4j.ExpressionBuilder;
-import com.example.mycalculator.MathEval;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,8 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import java.math.BigDecimal;
 
 
 
@@ -25,27 +20,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btn0 = (Button) findViewById(R.id.btn0);
-        btn1 = (Button) findViewById(R.id.btn1);
-        btn2 = (Button) findViewById(R.id.btn2);
-        btn3 = (Button) findViewById(R.id.btn3);
-        btn4 = (Button) findViewById(R.id.btn4);
-        btn5 = (Button) findViewById(R.id.btn5);
-        btn6 = (Button) findViewById(R.id.btn6);
-        btn7 = (Button) findViewById(R.id.btn7);
-        btn8 = (Button) findViewById(R.id.btn8);
-        btn9 = (Button) findViewById(R.id.btn9);
+        btn0 =  findViewById(R.id.btn0);
+        btn1 =  findViewById(R.id.btn1);
+        btn2 = findViewById(R.id.btn2);
+        btn3 =  findViewById(R.id.btn3);
+        btn4 =  findViewById(R.id.btn4);
+        btn5 =  findViewById(R.id.btn5);
+        btn6 =  findViewById(R.id.btn6);
+        btn7 =  findViewById(R.id.btn7);
+        btn8 =  findViewById(R.id.btn8);
+        btn9 =  findViewById(R.id.btn9);
 
-        btn_plus = (Button) findViewById(R.id.btn_plus);
-        btn_minus = (Button) findViewById(R.id.btn_minus);
-        btn_divide = (Button) findViewById(R.id.btn_divide);
-        btn_mul = (Button) findViewById(R.id.btn_mul);
-        btn_dot = (Button) findViewById(R.id.btn_dot);
+        btn_plus =  findViewById(R.id.btn_plus);
+        btn_minus =  findViewById(R.id.btn_minus);
+        btn_divide =  findViewById(R.id.btn_divide);
+        btn_mul = findViewById(R.id.btn_mul);
+        btn_dot =  findViewById(R.id.btn_dot);
 
 
-        btn_equal = (Button) findViewById(R.id.btn_equal);
-        btn_clear = (Button) findViewById(R.id.btn_clear);
-        text_display = (TextView) findViewById(R.id.textview_input_display);
+        btn_equal =  findViewById(R.id.btn_equal);
+        btn_clear =  findViewById(R.id.btn_clear);
+        text_display =  findViewById(R.id.textview_input_display);
 
         setClickListeners();
     }
@@ -121,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             addNumber(".");
         }
         else if (v.getId() == R.id.btn_equal) {
-            String result = null;
+            String result;
             try {
                 result = evaluate(text_display.getText().toString());
                 text_display.setText(result);
@@ -139,16 +134,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 /*
-
 1+1
 2*3
 4/5
 10-3
  */
-    private String evaluate(String expression) throws Exception {
-        MathEval evaluator = new MathEval();
-        String result = evaluator.eval(expression);
-        return  result;
+
+    private String evaluate(String expression){
+        try{
+            return MathEval.eval(expression);
+        }
+        catch(Exception e) {
+           return "Error";
+        }
     }
 
 
