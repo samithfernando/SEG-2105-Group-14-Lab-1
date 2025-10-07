@@ -133,13 +133,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             addNumber("0");
         }
     }
-/*
-1+1
-2*3
-4/5
-10-3
- */
-
     private String evaluate(String expression){
         try{
             return MathEval.eval(expression);
